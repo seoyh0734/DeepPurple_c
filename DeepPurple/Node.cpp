@@ -9,6 +9,7 @@ Node::Node() {
 	lose = 0;
 	visit = 0;
 	children = NULL;
+	child_len = 0;
 	parent = NULL;
 	bear_flag = false;
 };
@@ -16,8 +17,8 @@ Node::~Node() {
 	printf("¼Ò¸êÀÚ È£Ãâ");
 }
 
-void Node::set_Children(Node* Children) {
-	children = Children;
+void Node::set_Children(int Len) {
+	children = new Node[Len];
 };
 void Node::set_Color(bool Color) {
 	color = Color;
@@ -73,7 +74,7 @@ void Node::add_Lose(int Lose) {
 };
 int Node::sum_otherVisit() {
 	if (parent) {
-		int visit_sum = parent->sum_otherVisit;
+		int visit_sum = parent->sum_otherVisit();
 		return visit_sum - visit;
 	}
 	else {
@@ -98,9 +99,10 @@ float Node::sumChildPolicyScore() {
 };
 float* Node::get_policyDistribution() {
 	float tmp_sum = sumChildPolicyScore();
-
+	return &tmp_sum;
 };
 int Node::get_bestPolicyScoreChildIndex() {
+	return 1;
 };
 void Node::renew_result(bool Result) {};
 char* Node::For_root_choice() {
