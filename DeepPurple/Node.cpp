@@ -129,6 +129,8 @@ bool Node::is_root() {
 	else
 		return false;
 };
+
+// 출력해보고 싶은 노드정보
 void Node::print_childInfo() {
 	cout << win << endl;
 	cout << lose << endl;

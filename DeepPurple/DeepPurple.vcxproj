@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardStack.h" />
+    <ClInclude Include="ChessPython.h" />
+    <ClInclude Include="Monte.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PolicyModel.h" />
     <ClInclude Include="Stack.h" />
@@ -27,6 +29,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardStack.cpp" />
+    <ClCompile Include="ChessPython.cpp" />
+    <ClCompile Include="Monte.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PolicyModel.cpp" />
     <ClCompile Include="Stack.cpp" />
