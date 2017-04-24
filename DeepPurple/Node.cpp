@@ -16,8 +16,9 @@ Node::~Node() {
 	printf("소멸자 호출");
 }
 
-void Node::set_Children(Node* Children) {
-	children = Children;
+void Node::make_Children(int Len) {
+	children = new Node[Len];
+
 };
 void Node::set_Color(bool Color) {
 	color = Color;

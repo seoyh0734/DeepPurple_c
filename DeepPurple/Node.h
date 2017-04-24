@@ -19,7 +19,7 @@ private:
 public:
 	Node::Node();
 	Node::~Node();
-	void Node::set_Children(Node* Children);
+	void Node::make_Children(int Len);
 	void Node::set_Color(bool Color);
 	bool Node::should_expand(int Visit);
 	float Node::get_policy_Score();
