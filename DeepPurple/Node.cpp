@@ -14,11 +14,12 @@ Node::Node() {
 	bear_flag = false;
 };
 Node::~Node() {
-	printf("º“∏Í¿⁄ »£√‚");
+	
 }
 
-void Node::set_Children(int Len) {
+void Node::make_Children(int Len) {
 	children = new Node[Len];
+	child_len = Len;
 };
 void Node::set_Color(bool Color) {
 	color = Color;
@@ -35,6 +36,18 @@ float Node::get_policy_Score() {
 char* Node::get_command() {
 	return command;
 };
+Node* Node::get_bestChild() {
+	float tmp_max = 0;
+	int index = 0;
+	for (int i = 0; i < child_len; i++) {
+		if (children[i].get_policy_Score() > tmp_max) {
+			index = i;
+			tmp_max = children[i].get_policy_Score();
+		}
+	}
+	return &children[index];
+};
+
 Node* Node::get_Parent() {
 	return parent;
 };
