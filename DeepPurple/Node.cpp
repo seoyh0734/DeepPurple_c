@@ -91,7 +91,7 @@ int Node::sum_otherVisit() {
 		return visit_sum - visit;
 	}
 	else {
-		printf("ºÎ¸ð³ëµå°¡ ¾ø½À´Ï´Ù.\n");
+		printf("ë¶€ëª¨ë…¸ë“œê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		return 0;
 	}
 };

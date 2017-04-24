@@ -20,6 +20,7 @@ private:
 public:
 	Node::Node();
 	virtual Node::~Node();
+
 	void Node::make_Children(int Len);
 	void Node::set_Color(bool Color);
 	bool Node::should_expand(int Visit);
