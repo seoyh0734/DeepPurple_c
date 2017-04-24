@@ -9,16 +9,17 @@ Node::Node() {
 	lose = 0;
 	visit = 0;
 	children = NULL;
+	child_len = 0;
 	parent = NULL;
 	bear_flag = false;
 };
 Node::~Node() {
-	printf("¼Ò¸êÀÚ È£Ãâ");
+	
 }
 
 void Node::make_Children(int Len) {
 	children = new Node[Len];
-
+	child_len = Len;
 };
 void Node::set_Color(bool Color) {
 	color = Color;
@@ -35,6 +36,18 @@ float Node::get_policy_Score() {
 char* Node::get_command() {
 	return command;
 };
+Node* Node::get_bestChild() {
+	float tmp_max = 0;
+	int index = 0;
+	for (int i = 0; i < child_len; i++) {
+		if (children[i].get_policy_Score() > tmp_max) {
+			index = i;
+			tmp_max = children[i].get_policy_Score();
+		}
+	}
+	return &children[index];
+};
+
 Node* Node::get_Parent() {
 	return parent;
 };
@@ -74,11 +87,11 @@ void Node::add_Lose(int Lose) {
 };
 int Node::sum_otherVisit() {
 	if (parent) {
-		int visit_sum = parent->sum_otherVisit;
+		int visit_sum = parent->sum_otherVisit();
 		return visit_sum - visit;
 	}
 	else {
-		printf("ºÎ¸ð³ëµå°¡ ¾ø½À´Ï´Ù.\n");
+		printf("ë¶€ëª¨ë…¸ë“œê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		return 0;
 	}
 };
@@ -99,9 +112,10 @@ float Node::sumChildPolicyScore() {
 };
 float* Node::get_policyDistribution() {
 	float tmp_sum = sumChildPolicyScore();
-
+	return &tmp_sum;
 };
 int Node::get_bestPolicyScoreChildIndex() {
+	return 1;
 };
 void Node::renew_result(bool Result) {};
 char* Node::For_root_choice() {

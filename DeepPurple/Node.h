@@ -14,14 +14,17 @@ private:
 	int lose;
 	int visit;
 	Node* children;
+	int child_len;
 	Node* parent;
 	bool bear_flag;
 public:
 	Node::Node();
-	Node::~Node();
+	virtual Node::~Node();
+
 	void Node::make_Children(int Len);
 	void Node::set_Color(bool Color);
 	bool Node::should_expand(int Visit);
+	Node* Node::get_bestChild();
 	float Node::get_policy_Score();
 	char* Node::get_command();
 	Node* Node::get_Parent();

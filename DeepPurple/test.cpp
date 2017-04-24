@@ -1,5 +1,5 @@
-#include "Node.h"
+#include "Tree.h"
+
 int main() {
-	Node node = Node();
-	// asdasdasd
+
 }
