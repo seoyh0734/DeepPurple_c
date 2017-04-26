@@ -2,19 +2,18 @@
 
 #include "Node.h"
 #include "BoardStack.h"
-
+#include "PolicyModel.h"
 class Tree {
 private:
 	Node* root_Node;
 	Node* current_Node;
-	// board_stack ; 보드 스택
-	// pm ; 모델
+	BoardStack board_stack;
+	PolicyModel pm;
 public :
 	Tree::Tree();
+	Tree::Tree(char* BoardString);
 	virtual Tree::~Tree();
-	void Tree::reset_board();
 	void Tree::go_root();
-	void Tree::set_boardString();
 	Node* Tree::get_currentNode();
 	void Tree::make_policyNextChildren();
 	void Tree::make_policyNextRandomChildBoard();
@@ -24,6 +23,7 @@ public :
 	void Tree::go_parrent();
 	void Tree::get_currentBoard();
 	void Tree::check_board();
+	bool Tree::get_turn();
 
 
 };

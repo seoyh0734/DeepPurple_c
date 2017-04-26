@@ -12,6 +12,7 @@ private:
 	bool turn;
 public:
 	Monte::Monte(); // board state 입력, turn 초기화
+	Monte::Monte(char* BoardString);
 	char* Monte::predict();
 	bool  Monte::selection(int Depth);
 	bool  Monte::expantion();
