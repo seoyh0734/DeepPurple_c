@@ -91,7 +91,7 @@ int Node::sum_otherVisit() {
 		return visit_sum - visit;
 	}
 	else {
-		printf("부모노드가 없습니다.\n");
+		printf("부모노?��? ?�습?�다.\n");
 		return 0;
 	}
 };
