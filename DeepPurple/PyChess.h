@@ -1,10 +1,12 @@
 #pragma once
 #include <Python.h>
+#include <vector>
+#include <string.h>
 
 class PyChess {
 private:
 
-	PyObject* pModule = PyImport_ImportModule("x64.Debug.scripts.MyChess");
+	PyObject* pModule = PyImport_ImportModule("scripts.MyChess");
 	PyObject* pDict = PyModule_GetDict(pModule);
 	PyObject* pClass = PyDict_GetItemString(pDict, "MyChess");
 	PyObject* board;
@@ -17,7 +19,7 @@ public:
 
 	char* PyChess::push_san(char * San);
 
-	char* PyChess::legal_moves();
+	std::vector<std::string> PyChess::legal_moves();
 
 	void PyChess::pop();
 

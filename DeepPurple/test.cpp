@@ -1,6 +1,7 @@
 #include <Python.h>
 #include <iostream>
 #include "PyChess.h"
+#include <string>
 
 using namespace std;
 
@@ -23,12 +24,17 @@ int main(int argc, char* argv[])
 	board.printBoard();
 	cout << "-------------------" << endl;
 	
-	
+	std::vector<std::string> tmp;
 	
 	cout<<board.turn()<<endl;
 
+	tmp=board.legal_moves();
 
+	std::vector<std::string>::iterator itr;
 
+	for (itr = tmp.end()-1; itr != tmp.begin(); itr-=1) {
+		cout << *itr << endl;
+	}
 	cout << "-------------------" << endl;
 	board2.printBoard();
 	board.print_ex();

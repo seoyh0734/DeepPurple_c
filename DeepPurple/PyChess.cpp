@@ -1,4 +1,5 @@
 #include "PyChess.h"
+#include <string.h>
 
 PyChess::PyChess() {
 	board = PyObject_CallObject(pClass, NULL);
@@ -18,11 +19,23 @@ char* PyChess::push_san(char * San) {
 	return "";
 };
 
-char* PyChess::legal_moves() {
+std::vector<std::string> PyChess::legal_moves() {
 	PyObject* pValue = PyObject_CallMethod(board, "legal_moves", NULL, NULL);
-	char* tmp;
+	int size = PyList_GET_SIZE(pValue);
+	int i = 0;
+	std::vector<std::string> iVector;
+	
 
-	return "";
+
+	while (i < size) {
+		PyObject *tmp = PyList_GetItem(pValue, i++);
+		PyObject* pStrObj = PyUnicode_AsUTF8String(tmp);
+		char* zStr = PyBytes_AsString(pStrObj);
+		char* zStrDup = strdup(zStr);
+		iVector.insert(iVector.begin(), zStrDup);
+		Py_DECREF(pStrObj);
+	}
+	return iVector;
 };
 PyChess PyChess::copy() {
 	
