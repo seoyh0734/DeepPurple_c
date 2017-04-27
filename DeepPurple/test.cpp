@@ -21,10 +21,19 @@ int main(int argc, char* argv[])
 	PyChess board2 = board.copy();
 	board.push_san("e3");
 	board.printBoard();
+	cout << "-------------------" << endl;
+	
+	
+	
+	cout<<board.turn()<<endl;
+
+
+
+	cout << "-------------------" << endl;
 	board2.printBoard();
 	board.print_ex();
 	cout << "-------------------" << endl;
-	cout << board.turn();
+	
 
 	//board1.PrintBoard();
 	//if (Py_IsInitialized()) {

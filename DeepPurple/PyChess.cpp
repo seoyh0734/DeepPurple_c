@@ -46,44 +46,168 @@ bool PyChess::result() {
 
 bool PyChess::turn() {
 	PyObject* pValue = PyObject_CallMethod(board, "turn", NULL, NULL);
-	// pValue = PyIntToCInt(pValue);
-	return pValue;
+	
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 };
 
 bool PyChess::is_game_over() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_game_over", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 };
 
 bool  PyChess::can_claim_threefold_repetition() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_threefold_repetition", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 };
 
 bool  PyChess::can_claim_fifty_moves() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_fifty_moves", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 bool  PyChess::can_claim_draw() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_draw", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 bool  PyChess::is_fivefold_repetition() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_fivefold_repetition", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 bool  PyChess::is_seventyfive_moves() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_seventyfive_moves", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 bool  PyChess::is_stalemate(){
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_stalemate", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 };
 
 bool  PyChess::is_insufficient_material() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_insufficient_material", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 bool  PyChess::is_checkmate() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_checkmate", NULL, NULL);
+
+	int truthy = PyObject_IsTrue(pValue);
+
+	if (truthy)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
 };
 
 void PyChess::print_ex() {
