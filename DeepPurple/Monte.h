@@ -14,9 +14,9 @@ public:
 	Monte::Monte(PyChess Board);
 	char* Monte::predict();
 	bool  Monte::selection(int Depth);
-	bool  Monte::expantion();
+	string  Monte::expantion();
 	char*  Monte::simulation();
-	int  Monte::backpropagation(char* Result);
+	int  Monte::backpropagation(string Result);
 	char*  Monte::choice();
 
 };

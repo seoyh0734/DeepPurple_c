@@ -20,10 +20,11 @@ public :
 	void Tree::make_policyNextChildren();
 	PyChess Tree::make_policyNextRandomChildBoard(PyChess Board);
 	Node* Tree::get_rootNode();
-	char* Tree::get_result();
+	string Tree::get_result();
 	void Tree::go_next();
 	void Tree::go_parrent();
 	PyChess Tree::get_currentBoard();
 	bool Tree::check_board();
 	bool Tree::get_turn();
+	bool Tree::get_is_GameOver();
 };

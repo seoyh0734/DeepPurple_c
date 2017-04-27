@@ -1,7 +1,6 @@
 #include "Node.h"
 
 Node::Node() {
-	command = NULL;
 	color = NULL;
 	policy_Score = 0;
 	win = 0;
@@ -17,18 +16,18 @@ Node::~Node() {
 	
 }
 
-void Node::setting(Node* Parent, bool Color, char* Command, float Policy_Score) {
+void Node::setting(Node* Parent, bool Color,string Command, float Policy_Score) {
 	parent = Parent;
 	color = Color;
 	command = Command;
 	policy_Score = Policy_Score;
 };
-void Node::set_Children(int Len,Node* Children) {
+void Node::set_Children(int Len,Node** Children) {
 	children = Children;
 	child_len = Len;
 };
 void Node::make_Children(int Len) {
-	children = new Node[Len];
+	children = new Node*[Len];
 	child_len = Len;
 };
 void Node::set_Color(bool Color) {
@@ -43,25 +42,26 @@ bool Node::should_expand(int Visit) {
 float Node::get_policy_Score() {
 	return policy_Score;
 };
-char* Node::get_command() {
+string Node::get_command() {
 	return command;
 };
 Node* Node::get_bestChild() {
 	float tmp_max = 0;
 	int index = 0;
 	for (int i = 0; i < child_len; i++) {
-		if (children[i].get_policy_Score() > tmp_max) {
+		if (children[i]->calc_selectingScore() > tmp_max) {
 			index = i;
-			tmp_max = children[i].get_policy_Score();
+			tmp_max = children[i]->calc_selectingScore();
 		}
 	}
-	return &children[index];
+
+	return children[index];
 };
 
 Node* Node::get_Parent() {
 	return parent;
 };
-Node* Node::get_Children() {
+Node** Node::get_Children() {
 	return children;
 };
 
@@ -79,6 +79,10 @@ int Node::get_Lose() {
 };
 bool Node::get_Flag() {
 	return bear_flag;
+};
+
+int Node::get_Visit() {
+	return visit;
 };
 void Node::on_Flag(){
 	bear_flag = true;
@@ -101,13 +105,14 @@ int Node::sum_otherVisit() {
 		return visit_sum - visit;
 	}
 	else {
-		printf("ë¶€ëª¨ë…¸?œê? ?†ìŠµ?ˆë‹¤.\n");
+		printf("ºÎ¸ð³ëµå°¡ ¾ø½À´Ï´Ù.");
 		return 0;
 	}
 };
 
 float Node::calc_selectingScore() {
-	return win / (1 + win + lose + draw) + Cpuct * policy_Score * sqrt(sum_otherVisit() + 1) / (1 + visit);
+	//cout << win / (1 + win + lose + draw) + Cpuct * policy_Score * 1 << endl;
+	return win / (1 + win + lose + draw) + Cpuct * policy_Score * 1;//sqrt(sum_otherVisit() + 1) / (1 + visit);
 };
 void Node::visited(){
 	visit += 1;
@@ -116,7 +121,7 @@ float Node::sumChildPolicyScore() {
 	int len = sizeof(children) / sizeof(Node);
 	float tmp_sum = 0;
 	for (int i; i < len; i++) {
-		tmp_sum += children[0].policy_Score;
+		tmp_sum += children[0]->policy_Score;
 	}
 	return tmp_sum;
 };
@@ -127,10 +132,11 @@ float* Node::get_policyDistribution() {
 int Node::get_bestPolicyScoreChildIndex() {
 	return 1;
 };
-void Node::renew_result(bool Result) {};
-char* Node::For_root_choice() {
+void Node::renew_result(string Result) {};
+
+string Node::For_root_choice() {
 	int best_child_index = get_bestPolicyScoreChildIndex();
-	return 	children[best_child_index].get_command();
+	return 	children[best_child_index]->get_command();
 };
 bool Node::is_root() {
 	if (!parent) {

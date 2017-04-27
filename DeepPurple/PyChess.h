@@ -1,6 +1,12 @@
 #pragma once
 #include <Python.h>
-#include "PyChess.h"
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
 
 class PyChess {
 private:
@@ -20,13 +26,15 @@ public:
 
 	char* PyChess::push_san(char * San);
 
-	char* PyChess::legal_moves();
+	char* PyChess::push_san(string San);
+
+	vector<string> PyChess::legal_moves();
 
 	void PyChess::pop();
 
 	PyChess PyChess::copy();
 
-	char* PyChess::result();
+	string PyChess::result();
 
 	bool PyChess::turn();
 
