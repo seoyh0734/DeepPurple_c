@@ -17,6 +17,16 @@ Node::~Node() {
 	
 }
 
+void Node::setting(Node* Parent, bool Color, char* Command, float Policy_Score) {
+	parent = Parent;
+	color = Color;
+	command = Command;
+	policy_Score = Policy_Score;
+};
+void Node::set_Children(int Len,Node* Children) {
+	children = Children;
+	child_len = Len;
+};
 void Node::make_Children(int Len) {
 	children = new Node[Len];
 	child_len = Len;

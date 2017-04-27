@@ -1,5 +1,6 @@
 #pragma once
 #include <Python.h>
+#include "PyChess.h"
 
 class PyChess {
 private:
@@ -13,6 +14,8 @@ public:
 
 	PyChess::PyChess();
 
+	PyChess::PyChess(PyObject* Board);
+
 	void PyChess::printBoard();
 
 	char* PyChess::push_san(char * San);
@@ -21,24 +24,24 @@ public:
 
 	void PyChess::pop();
 
-	PyObject* PyChess::copy();
+	PyChess PyChess::copy();
 
-	bool PyChess::result();
+	char* PyChess::result();
 
 	bool PyChess::turn();
 
 	bool PyChess::is_game_over();
 
-		bool  PyChess::can_claim_threefold_repetition();
-		bool  PyChess::can_claim_fifty_moves();
-		bool  PyChess::can_claim_draw();
-		bool  PyChess::is_fivefold_repetition();
-		bool  PyChess::is_seventyfive_moves();
-		bool  PyChess::is_stalemate();
-		bool  PyChess::is_insufficient_material();
-		bool  PyChess::is_checkmate();
+	bool  PyChess::can_claim_threefold_repetition();
+	bool  PyChess::can_claim_fifty_moves();
+	bool  PyChess::can_claim_draw();
+	bool  PyChess::is_fivefold_repetition();
+	bool  PyChess::is_seventyfive_moves();
+	bool  PyChess::is_stalemate();
+	bool  PyChess::is_insufficient_material();
+	bool  PyChess::is_checkmate();
 
-		
+	bool PyChess::is_check_reason();
 };
 
 

@@ -3,27 +3,27 @@
 #include "Node.h"
 #include "BoardStack.h"
 #include "PolicyModel.h"
+#include "PyChess.h"
+
 class Tree {
 private:
 	Node* root_Node;
 	Node* current_Node;
-	BoardStack board_stack;
+	PyChess board;
 	PolicyModel pm;
 public :
 	Tree::Tree();
-	Tree::Tree(char* BoardString);
+	Tree::Tree(PyChess Board);
 	virtual Tree::~Tree();
 	void Tree::go_root();
 	Node* Tree::get_currentNode();
 	void Tree::make_policyNextChildren();
-	void Tree::make_policyNextRandomChildBoard();
+	PyChess Tree::make_policyNextRandomChildBoard(PyChess Board);
 	Node* Tree::get_rootNode();
 	char* Tree::get_result();
 	void Tree::go_next();
 	void Tree::go_parrent();
-	void Tree::get_currentBoard();
-	void Tree::check_board();
+	PyChess Tree::get_currentBoard();
+	bool Tree::check_board();
 	bool Tree::get_turn();
-
-
 };
