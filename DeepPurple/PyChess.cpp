@@ -4,6 +4,10 @@ PyChess::PyChess() {
 	board = PyObject_CallObject(pClass, NULL);
 };
 
+PyChess::PyChess(PyObject* Board) {
+	board = Board;
+};
+
 void PyChess::printBoard() {
 	PyObject* pValue = PyObject_CallMethod(board, "print_board", NULL, NULL);
 };
@@ -20,11 +24,11 @@ char* PyChess::legal_moves() {
 
 	return "";
 };
-PyObject* PyChess::copy() {
+PyChess PyChess::copy() {
+	
 	PyObject* pValue = PyObject_CallMethod(board, "copy", NULL, NULL);
-
-
-	return pValue;
+	PyChess tmp = PyChess(pValue);
+	return tmp;
 };
 
 void PyChess::pop() {
@@ -42,6 +46,7 @@ bool PyChess::result() {
 
 bool PyChess::turn() {
 	PyObject* pValue = PyObject_CallMethod(board, "turn", NULL, NULL);
+	// pValue = PyIntToCInt(pValue);
 	return pValue;
 };
 
@@ -52,24 +57,35 @@ bool PyChess::is_game_over() {
 bool  PyChess::can_claim_threefold_repetition() {
 	return true;
 };
+
 bool  PyChess::can_claim_fifty_moves() {
 	return true;
 };
+
 bool  PyChess::can_claim_draw() {
 	return true;
 };
+
 bool  PyChess::is_fivefold_repetition() {
 	return true;
 };
+
 bool  PyChess::is_seventyfive_moves() {
 	return true;
 };
+
 bool  PyChess::is_stalemate(){
 	return true;
 };
+
 bool  PyChess::is_insufficient_material() {
 	return true;
 };
+
 bool  PyChess::is_checkmate() {
 	return true;
+};
+
+void PyChess::print_ex() {
+	PyObject* pValue = PyObject_CallMethod(board, "test", NULL,NULL);
 };

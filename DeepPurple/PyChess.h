@@ -4,7 +4,7 @@
 class PyChess {
 private:
 
-	PyObject* pModule = PyImport_ImportModule("scripts.MyChess");
+	PyObject* pModule = PyImport_ImportModule("x64.Debug.scripts.MyChess");
 	PyObject* pDict = PyModule_GetDict(pModule);
 	PyObject* pClass = PyDict_GetItemString(pDict, "MyChess");
 	PyObject* board;
@@ -12,7 +12,7 @@ private:
 public:
 
 	PyChess::PyChess();
-
+	PyChess::PyChess(PyObject* Board);
 	void PyChess::printBoard();
 
 	char* PyChess::push_san(char * San);
@@ -21,7 +21,7 @@ public:
 
 	void PyChess::pop();
 
-	PyObject* PyChess::copy();
+	PyChess PyChess::copy();
 
 	bool PyChess::result();
 
@@ -37,7 +37,7 @@ public:
 		bool  PyChess::is_stalemate();
 		bool  PyChess::is_insufficient_material();
 		bool  PyChess::is_checkmate();
-
+		void PyChess::print_ex();
 		
 };
 

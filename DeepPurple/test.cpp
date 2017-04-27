@@ -14,14 +14,18 @@ void printBoard(PyObject* object) {
 
 int main(int argc, char* argv[])
 {
-	Py_Initialize();
+	Py_Initialize(); // √ ±‚»≠ 
 	PyRun_SimpleString("import sys");
 	PyChess board = PyChess();
 	board.printBoard();
-
-	cout << board.turn() << endl;
+	PyChess board2 = board.copy();
 	board.push_san("e3");
-	cout << board.turn() << endl;
+	board.printBoard();
+	board2.printBoard();
+	board.print_ex();
+	cout << "-------------------" << endl;
+	cout << board.turn();
+
 	//board1.PrintBoard();
 	//if (Py_IsInitialized()) {
 	//	Py_Finalize();
