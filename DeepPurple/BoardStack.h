@@ -1,6 +1,5 @@
 #pragma once
 #include "Stack.h"
-#include "ChessPython.h"
 
 // 필요없는 듯 
 class BoardStack {

@@ -28,7 +28,7 @@ Node* Tree::get_currentNode() {
 };
 
 void Tree::make_policyNextChildren() {
-	ChessPython tmpBoard = ChessPython();
+	;
 
 };
 

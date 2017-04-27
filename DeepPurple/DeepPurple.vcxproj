@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardStack.h" />
-    <ClInclude Include="ChessPython.h" />
+    <ClInclude Include="PyChess.h" />
     <ClInclude Include="Monte.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PolicyModel.h" />
@@ -29,13 +29,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardStack.cpp" />
-    <ClCompile Include="ChessPython.cpp" />
+    <ClCompile Include="PyChess.cpp" />
     <ClCompile Include="Monte.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PolicyModel.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="test_Python.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -95,8 +94,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\Anaconda3\include;C:\Users\SYH\Anaconda3\include;</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;C:\Program Files\Anaconda3\Lib;C:\Program Files\Anaconda3\libs;C:\Users\SYH\Anaconda3\Lib;C:\Users\SYH\Anaconda3\libs;</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\Anaconda3\include;C:\Users\SYH\Anaconda3\include;C:\Program Files\Anaconda3\include;</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;C:\Program Files\Anaconda3\Lib;C:\Program Files\Anaconda3\libs;C:\Users\SYH\Anaconda3\Lib;C:\Users\SYH\Anaconda3\libs;C:\Program Files\Anaconda3\libs;C:\Program Files\Anaconda3\Lib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -33,7 +33,7 @@
     <ClInclude Include="Monte.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ChessPython.h">
+    <ClInclude Include="PyChess.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,13 +56,10 @@
     <ClCompile Include="PolicyModel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="test_Python.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Monte.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ChessPython.cpp">
+    <ClCompile Include="PyChess.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
