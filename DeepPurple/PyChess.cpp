@@ -19,11 +19,22 @@ vector<string> split(const string &s, char delim) {
 }
 
 PyChess::PyChess() {
+	pModule = PyImport_ImportModule("scripts.MyChess");
+	pDict = PyModule_GetDict(pModule);
+	pClass = PyDict_GetItemString(pDict, "MyChess");
+	Py_XDECREF(pModule);
+	Py_XDECREF(pDict);
+	Py_XDECREF(pClass);
 	board = PyObject_CallObject(pClass, NULL);
+
 };
 
 PyChess::PyChess(PyObject* Board) {
 	board = Board;
+};
+
+PyChess::~PyChess() {
+	
 };
 
 void PyChess::printBoard() {
@@ -80,28 +91,35 @@ vector<string> PyChess::legal_moves() {
 
 void PyChess::print_legal_moves() {
 	PyObject* pValue = PyObject_CallMethod(board, "print_legal_moves", NULL, NULL);
+	if (pValue)
+		Py_XDECREF(pValue);
 };
 
 PyChess PyChess::copy() {
-	PyObject* pValue = PyObject_CallMethod(board, "copy", NULL, NULL);	
+	PyObject* pValue = PyObject_CallMethod(board, "copy", NULL, NULL);
 	PyChess tmpBoard = PyChess(pValue);
-
 	return tmpBoard;
 };
 
 void PyChess::pop() {
 	PyObject* pValue = PyObject_CallMethod(board, "pop", NULL, NULL);
+	if (pValue)
+		Py_XDECREF(pValue);
 };
 
 string PyChess::result() {
 	PyObject* pValue = PyObject_CallMethod(board, "result", NULL, NULL);
 	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
 	return result;
 };
 
 bool PyChess::turn() {
 	PyObject* pValue = PyObject_CallMethod(board, "turn", NULL, NULL);
 	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
 	if (result == "True")
 		return true;
 	return false;

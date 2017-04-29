@@ -13,8 +13,21 @@ Node::Node() {
 	bear_flag = false;
 };
 Node::~Node() {
+	//cout << "노드 제거" << endl;
+	//if (children != nullptr) {
+	//for (int i = 0; i < child_len; i++) {
+	//	delete children[i];
+	//	cout << i << endl;
+	//}
+	//delete children;
+	//}
+	//cout << this << endl;
 	
-}
+};
+
+void Node::destroy() {
+
+};
 
 void Node::setting(Node* Parent, bool Color,string Command, float Policy_Score) {
 	parent = Parent;
@@ -126,9 +139,8 @@ void Node::visited(){
 	visit += 1;
 };
 float Node::sumChildPolicyScore() {
-	int len = sizeof(children) / sizeof(Node);
 	float tmp_sum = 0;
-	for (int i; i < len; i++) {
+	for (int i; i < child_len; i++) {
 		tmp_sum += children[0]->policy_Score;
 	}
 	return tmp_sum;

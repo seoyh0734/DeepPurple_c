@@ -28,8 +28,6 @@ Tree::Tree(PyChess Board) {
 };
 
 Tree::~Tree() {
-	if (!(current_Node == root_Node))
-		delete current_Node;
 	delete root_Node;
 };
 

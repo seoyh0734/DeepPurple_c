@@ -11,9 +11,9 @@ using namespace std;
 class PyChess {
 private:
 
-	PyObject* pModule = PyImport_ImportModule("scripts.MyChess");
-	PyObject* pDict = PyModule_GetDict(pModule);
-	PyObject* pClass = PyDict_GetItemString(pDict, "MyChess");
+	PyObject* pModule;
+	PyObject* pDict;
+	PyObject* pClass;
 	PyObject* board;
 
 public:
@@ -21,6 +21,8 @@ public:
 	PyChess::PyChess();
 
 	PyChess::PyChess(PyObject* Board);
+
+	PyChess::~PyChess();
 
 	void PyChess::printBoard();
 

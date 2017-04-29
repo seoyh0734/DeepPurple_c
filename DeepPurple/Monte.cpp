@@ -11,8 +11,8 @@ Monte::Monte() {
 Monte::Monte(PyChess Board) {
 	Tree tree = Tree(Board.copy());
 	expand_visit = 50000;
-	select_depth = 1000;
-	repeat_num = 10;
+	select_depth = 100;
+	repeat_num = 1;
 	simulation_num = 1;
 	turn = tree.get_turn();
 };
@@ -44,10 +44,10 @@ string Monte::predict() {
 		backpropagation(last_result);
 	}
 
-
 	string the_choice = choice();
-
-	return the_choice;
+	cout << "aaa" << endl;
+	cout << the_choice << endl;
+	return  the_choice;
 };
 
 bool  Monte::selection(int Depth) {
@@ -122,7 +122,7 @@ string  Monte::backpropagation(string Result) {
 	cout << "backpropagation" << endl;
 	//tree.get_currentBoard().printBoard();
 	if (tree.get_currentNode()->is_root()) {
-		cout << "root" << endl;
+		//cout << "root" << endl;
 		return "end";
 	}
 	else {
