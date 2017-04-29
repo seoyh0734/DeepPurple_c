@@ -44,6 +44,8 @@ public:
 	void Node::add_Lose(int Lose);
 	int Node::sum_otherVisit();
 	float Node::calc_selectingScore();
+	float Node::get_Qscore();
+	float Node::get_Uscore();
 	void Node::visited();
 	float Node::sumChildPolicyScore();
 	float* Node::get_policyDistribution();
@@ -52,5 +54,6 @@ public:
 	string Node::For_root_choice();
 	bool Node::is_root();
 	void Node::print_childInfo();
+	int Node::sum_childrenVisit();
 
 };

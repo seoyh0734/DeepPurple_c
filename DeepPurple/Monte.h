@@ -12,11 +12,10 @@ private:
 public:
 	Monte::Monte(); // board state 입력, turn 초기화
 	Monte::Monte(PyChess Board);
-	char* Monte::predict();
+	string Monte::predict();
 	bool  Monte::selection(int Depth);
 	string  Monte::expantion();
 	char*  Monte::simulation();
-	int  Monte::backpropagation(string Result);
-	char*  Monte::choice();
-
+	string  Monte::backpropagation(string Result);
+	string  Monte::choice();
 };

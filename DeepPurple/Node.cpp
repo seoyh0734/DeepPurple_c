@@ -100,8 +100,8 @@ void Node::add_Lose(int Lose) {
 	lose += Lose;
 };
 int Node::sum_otherVisit() {
-	if (parent) {
-		int visit_sum = parent->sum_otherVisit();
+	if (parent != nullptr) {
+		int visit_sum = parent->sum_childrenVisit();
 		return visit_sum - visit;
 	}
 	else {
@@ -112,8 +112,16 @@ int Node::sum_otherVisit() {
 
 float Node::calc_selectingScore() {
 	//cout << win / (1 + win + lose + draw) + Cpuct * policy_Score * 1 << endl;
-	return win / (1 + win + lose + draw) + Cpuct * policy_Score * 1;//sqrt(sum_otherVisit() + 1) / (1 + visit);
+	return  get_Qscore()+ get_Uscore() ;
 };
+
+float Node::get_Qscore() {
+	return (win + 0.1 * draw )/ (1 + win + lose + draw);
+};
+float Node::get_Uscore() {
+	return Cpuct * policy_Score * 1 * sqrt(sum_otherVisit() + 1) / (1 + visit);
+};
+
 void Node::visited(){
 	visit += 1;
 };
@@ -135,8 +143,17 @@ int Node::get_bestPolicyScoreChildIndex() {
 void Node::renew_result(string Result) {};
 
 string Node::For_root_choice() {
-	int best_child_index = get_bestPolicyScoreChildIndex();
-	return 	children[best_child_index]->get_command();
+	float tmp_max = 0;
+	int index = 0;
+
+	for (int i = 0; i < child_len; i++) {
+		if (children[i]->get_Visit() > tmp_max) {
+			index = i;
+			tmp_max = children[i]->get_Visit();
+		}
+	}
+
+	return children[index]->get_command();
 };
 bool Node::is_root() {
 	if (!parent) {
@@ -148,6 +165,16 @@ bool Node::is_root() {
 
 // 출력해보고 싶은 노드정보
 void Node::print_childInfo() {
-	cout << win << endl;
-	cout << lose << endl;
+	cout << "win : " << win;
+	cout << " lose : " << lose;
+	cout << " Draw : " << draw;
+
+};
+
+
+int Node::sum_childrenVisit() {
+	int sum = 0;
+	for (int i = 0; i < child_len; i++)
+		sum += children[i]->get_Visit();
+	return sum;
 };

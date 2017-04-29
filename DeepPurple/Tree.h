@@ -27,4 +27,5 @@ public :
 	bool Tree::check_board();
 	bool Tree::get_turn();
 	bool Tree::get_is_GameOver();
+	string Tree::best_choice();
 };

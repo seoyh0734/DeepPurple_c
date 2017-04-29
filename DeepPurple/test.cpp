@@ -12,10 +12,19 @@ int main(int argc, char* argv[])
 		
 		PyChess board = PyChess();
 		board.printBoard();
+		string choice = "";
+		//cout << board.result() << endl;
+		while (!board.is_game_over()) {
+			if (board.turn()) {
+				cin >> choice; 
+			}
+			else {
+				Monte monte = Monte(board);
+				choice = monte.predict();
+			}
+			board.push_san(choice);
+		}
 
-		cout << board.result() << endl;
-		Monte monte = Monte(board);
-		monte.predict();
 		//char * choice = monte.predict();
 		//cout << choice << endl;
 		//string asd;

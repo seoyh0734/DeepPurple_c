@@ -64,18 +64,18 @@ void Tree::make_policyNextChildren() {
 				}
 				else if (tmpBoard2.result() == Bwin) {
 					cout << "¹é : Èæ½Â" << endl;
-					continue;
+					policy_points[i] = -1000000;
 				}
 				else if (tmpBoard2.result() == Draw) {
 					if (tmpBoard2.is_check_reason())
-						continue;
+						policy_points[i] = -1000000;
 					cout << "¹é ºñ±è" << endl;
 				}
 			}
 			else {
 				if (tmpBoard2.result() == Wwin) {
 					cout << "Èæ : ¹é½Â" << endl;
-					continue;
+					policy_points[i] = -1000000;
 				}
 				else if (tmpBoard2.result() == Bwin) {
 					policy_points[i] = 1000000;
@@ -83,7 +83,7 @@ void Tree::make_policyNextChildren() {
 				}
 				else if (tmpBoard2.result() == Draw) {
 					if (tmpBoard2.is_check_reason())
-						continue;
+						policy_points[i] = -1000000;
 					cout << "Èæ ºñ±è" << endl;
 				}
 			}
@@ -174,7 +174,7 @@ string Tree::get_result() {
 void Tree::go_next() {
 	//cout << current_Node <<endl;
 	current_Node = current_Node->get_bestChild();
-	//cout << current_Node->get_Visit() << endl;
+	//cout << current_Node->get_command() << endl;
 	current_Node->visited();
 	//cout << current_Node->get_Visit() << endl;
 	//cout << current_Node << endl;
@@ -199,4 +199,9 @@ bool Tree::get_turn() {
 };
 bool Tree::get_is_GameOver() {
 	return board.is_game_over();
+};
+
+string Tree::best_choice() {
+	return get_rootNode()->For_root_choice();
+
 };

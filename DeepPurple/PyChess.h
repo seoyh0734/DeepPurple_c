@@ -30,6 +30,7 @@ public:
 
 	vector<string> PyChess::legal_moves();
 
+	void PyChess::print_legal_moves();
 	void PyChess::pop();
 
 	PyChess PyChess::copy();

@@ -28,16 +28,26 @@ PyChess::PyChess(PyObject* Board) {
 
 void PyChess::printBoard() {
 	PyObject* pValue = PyObject_CallMethod(board, "print_board", NULL, NULL);
+	if (pValue) {
+		Py_XDECREF(pValue);
+	}
+
 };
 
 char* PyChess::push_san(char * San) {
 	PyObject* pValue = PyObject_CallMethod(board, "push_san", "s", San);
+	if (pValue) {
+		Py_XDECREF(pValue);
+	}
 	char* tmp;
 	return "";
 };
 
 char* PyChess::push_san(string San) {
 	PyObject* pValue = PyObject_CallMethod(board, "push_san", "s", San.c_str());
+	if (pValue) {
+		Py_XDECREF(pValue);
+	}
 	char* tmp;
 	return "";
 };
@@ -45,6 +55,9 @@ char* PyChess::push_san(string San) {
 vector<string> PyChess::legal_moves() {
 	PyObject* pValue = PyObject_CallMethod(board, "legal_moves", NULL, NULL);
 	string total = _PyUnicode_AsString(pValue);
+	if (pValue) {
+		Py_XDECREF(pValue);
+	}
 	//cout << total << endl;
 	vector<string> strs = split(total, ',');
 	vector<string> tmp1 = split(strs[0], '(');
@@ -65,9 +78,14 @@ vector<string> PyChess::legal_moves() {
 	return strs;
 };
 
+void PyChess::print_legal_moves() {
+	PyObject* pValue = PyObject_CallMethod(board, "print_legal_moves", NULL, NULL);
+};
+
 PyChess PyChess::copy() {
-	PyObject* pValue = PyObject_CallMethod(board, "copy", NULL, NULL);
+	PyObject* pValue = PyObject_CallMethod(board, "copy", NULL, NULL);	
 	PyChess tmpBoard = PyChess(pValue);
+
 	return tmpBoard;
 };
 
@@ -83,51 +101,124 @@ string PyChess::result() {
 
 bool PyChess::turn() {
 	PyObject* pValue = PyObject_CallMethod(board, "turn", NULL, NULL);
-	return pValue;
-};
-
-bool PyChess::is_game_over() {
-	
-	PyObject* pValue = PyObject_CallMethod(board, "is_game_over", NULL, NULL);
 	string result = _PyUnicode_AsString(pValue);
 	if (result == "True")
 		return true;
 	return false;
 };
 
+bool PyChess::is_game_over() {
+	PyObject* pValue = PyObject_CallMethod(board, "is_game_over", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue) 
+		Py_XDECREF(pValue);
+	if (result == "True")
+		return true;
+	return false;
+};
+
 bool  PyChess::can_claim_threefold_repetition() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_threefold_repetition", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::can_claim_fifty_moves() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_fifty_moves", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::can_claim_draw() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "can_claim_draw", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::is_fivefold_repetition() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_fivefold_repetition", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::is_seventyfive_moves() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_seventyfive_moves", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::is_stalemate(){
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_stalemate", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::is_insufficient_material() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_insufficient_material", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool  PyChess::is_checkmate() {
-	return true;
+	PyObject* pValue = PyObject_CallMethod(board, "is_checkmate", NULL, NULL);
+	string result = _PyUnicode_AsString(pValue);
+	if (pValue)
+		Py_XDECREF(pValue);
+
+	if (result == "True")
+		return true;
+	return false;
 };
 
 bool PyChess::is_check_reason() {
-	return true;
+	//cout << "here" << endl;
+	bool flag = false;
+	if (can_claim_threefold_repetition())
+		flag = true;
+	//cout << "here1" << endl;
+	if (can_claim_fifty_moves())
+		flag = true;
+	//cout << "here2" << endl;
+	if (can_claim_draw())
+		flag = true;
+	//cout << "here3" << endl;
+	if (is_fivefold_repetition())
+		flag = true;
+	//cout << "here4" << endl;
+	if (is_seventyfive_moves())
+		flag = true;
+	//cout << "here5" << endl;
+	return flag;
 };
 
