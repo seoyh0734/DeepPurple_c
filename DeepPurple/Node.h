@@ -21,6 +21,7 @@ private:
 public:
 	Node::Node();
 	virtual Node::~Node();
+	void Node::destroy();
 	void Node::setting(Node* Parent, bool Color, string Command, float Policy_Score);
 	void Node::set_Children(int Len, Node** Children);
 	void Node::make_Children(int Len);
