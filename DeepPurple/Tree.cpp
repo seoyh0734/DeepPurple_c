@@ -28,7 +28,8 @@ Tree::Tree(PyChess Board) {
 };
 
 Tree::~Tree() {
-	delete root_Node;
+	cout << "È£Ãâ" << endl;
+	root_Node->destroy();
 };
 
 void Tree::go_root() {
@@ -166,6 +167,7 @@ Node* Tree::get_rootNode() {
 };
 
 string Tree::get_result() {
+	cout <<"asd1111"<< board.result() << endl;
 	return board.result();
 };
 

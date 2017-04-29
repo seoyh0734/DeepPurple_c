@@ -11,14 +11,14 @@ Monte::Monte() {
 Monte::Monte(PyChess Board) {
 	Tree tree = Tree(Board.copy());
 	expand_visit = 50000;
-	select_depth = 100;
+	select_depth = 1000;
 	repeat_num = 1;
 	simulation_num = 1;
 	turn = tree.get_turn();
 };
 
 string Monte::predict() {
-	string last_result;
+	string last_result = "asdad";
 	for (int i = 0; i < repeat_num; i++) {
 		cout << i << "번째 탐색" << endl;
 		//tree.get_currentBoard().printBoard();
@@ -36,23 +36,26 @@ string Monte::predict() {
 				last_result = simulation(); // 시뮬레이션을 통해 결과 반환
 		}
 		else {	// 탐색중 게임이 끝났다면
-			//cout << "b" << endl;
+			cout << "b" << endl;
 			last_result = tree.get_result();
+			cout << "111111111111111"<<tree.get_result() << endl;
 		}
 		//cout << "c" << endl;
 		//cout << "result: "<<last_result << endl;
 		backpropagation(last_result);
+		cout << "result : " << last_result << endl;
 	}
 
 	string the_choice = choice();
 	cout << "aaa" << endl;
 	cout << the_choice << endl;
+
 	return  the_choice;
 };
 
 bool  Monte::selection(int Depth) {
 	//cout << "selection" << endl;
-	cout << Depth << endl;
+	//cout << Depth << endl;
 	//tree.get_currentBoard().printBoard();
 	//cout << tree.get_turn() << endl;
 	//cout << "-----------------" << endl;
@@ -71,7 +74,7 @@ bool  Monte::selection(int Depth) {
 			if (!tree.get_currentNode()->get_Flag()) {
 				tree.make_policyNextChildren();
 				tree.get_currentNode()->on_Flag();
-				cout << "자식 생성" << endl;
+				//cout << "자식 생성" << endl;
 			}	
 			tree.go_next();
 			//cout << "5" << endl;

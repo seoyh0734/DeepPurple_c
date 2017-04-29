@@ -12,21 +12,19 @@ Node::Node() {
 	parent = NULL;
 	bear_flag = false;
 };
-Node::~Node() {
-	//cout << "노드 제거" << endl;
-	//if (children != nullptr) {
-	//for (int i = 0; i < child_len; i++) {
-	//	delete children[i];
-	//	cout << i << endl;
-	//}
-	//delete children;
-	//}
-	//cout << this << endl;
-	
-};
+Node::~Node() {};
+
+
 
 void Node::destroy() {
-
+	cout << "노드 제거" << endl;
+	if (children != nullptr) {
+		for (int i = 0; i < child_len; i++) {
+			children[i]->destroy();
+		}
+	}
+	delete children;
+	delete this;
 };
 
 void Node::setting(Node* Parent, bool Color,string Command, float Policy_Score) {

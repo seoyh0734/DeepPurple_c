@@ -34,7 +34,7 @@ PyChess::PyChess(PyObject* Board) {
 };
 
 PyChess::~PyChess() {
-	
+
 };
 
 void PyChess::printBoard() {
@@ -112,6 +112,7 @@ string PyChess::result() {
 	string result = _PyUnicode_AsString(pValue);
 	if (pValue)
 		Py_XDECREF(pValue);
+	//cout << "asd"<< result << endl;
 	return result;
 };
 
