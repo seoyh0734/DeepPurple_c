@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardStack.h" />
+    <ClInclude Include="Moveset.h" />
     <ClInclude Include="PyChess.h" />
     <ClInclude Include="Monte.h" />
     <ClInclude Include="Node.h" />
@@ -29,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardStack.cpp" />
+    <ClCompile Include="Moveset.cpp" />
     <ClCompile Include="PyChess.cpp" />
     <ClCompile Include="Monte.cpp" />
     <ClCompile Include="Node.cpp" />

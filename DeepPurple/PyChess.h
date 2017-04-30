@@ -1,9 +1,9 @@
 #pragma once
 #include <Python.h>
-#include <string>
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include "Moveset.h"
 
 using namespace std;
 
@@ -28,16 +28,14 @@ public:
 
 	char* PyChess::push_san(char * San);
 
-	char* PyChess::push_san(string San);
-
-	vector<string> PyChess::legal_moves();
+	Moveset* PyChess::legal_moves();
 
 	void PyChess::print_legal_moves();
 	void PyChess::pop();
 
 	PyChess PyChess::copy();
 
-	string PyChess::result();
+	char* PyChess::result();
 
 	bool PyChess::turn();
 
@@ -53,6 +51,9 @@ public:
 	bool  PyChess::is_checkmate();
 
 	bool PyChess::is_check_reason();
+
+
+	void PyChess::destroy();
 };
 
 

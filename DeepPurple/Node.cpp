@@ -12,12 +12,8 @@ Node::Node() {
 	parent = NULL;
 	bear_flag = false;
 };
-Node::~Node() {};
-
-
 
 void Node::destroy() {
-	cout << "노드 제거" << endl;
 	if (children != nullptr) {
 		for (int i = 0; i < child_len; i++) {
 			children[i]->destroy();
@@ -27,10 +23,14 @@ void Node::destroy() {
 	delete this;
 };
 
-void Node::setting(Node* Parent, bool Color,string Command, float Policy_Score) {
+void Node::setting(Node* Parent, bool Color,char* Command, float Policy_Score) {
 	parent = Parent;
 	color = Color;
-	command = Command;
+	int i = 0;
+	for (i; Command[i] != '\0'; i++) {
+		command[i] = Command[i];
+	}
+	command[i] = Command[i];
 	policy_Score = Policy_Score;
 };
 void Node::set_Children(int Len,Node** Children) {
@@ -41,6 +41,10 @@ void Node::make_Children(int Len) {
 	children = new Node*[Len];
 	child_len = Len;
 };
+Node* Node::make_Child(int I) {
+	return children[I] = new Node();
+}
+
 void Node::set_Color(bool Color) {
 	color = Color;
 };
@@ -53,7 +57,7 @@ bool Node::should_expand(int Visit) {
 float Node::get_policy_Score() {
 	return policy_Score;
 };
-string Node::get_command() {
+char* Node::get_command() {
 	return command;
 };
 Node* Node::get_bestChild() {
@@ -150,19 +154,74 @@ float* Node::get_policyDistribution() {
 int Node::get_bestPolicyScoreChildIndex() {
 	return 1;
 };
-void Node::renew_result(string Result) {};
+void Node::renew_result(char* Result) {
 
-string Node::For_root_choice() {
-	float tmp_max = 0;
+	char Wwin = '0';
+	char Bwin = '1';
+	char Draw = '2';
+
+	if (!color) { // 흰색이면
+		if (Result[2] == Wwin) {
+			add_Win();
+		}
+		else if (Result[2] == Bwin) {
+			add_Lose();
+		}
+		else if (Result[2] == Draw) {
+			add_Draw();
+		}
+	}
+	else {
+		if (Result[2] == Wwin) {
+			add_Lose();
+		}
+		else if (Result[2] == Bwin) {
+			add_Win();
+		}
+		else if (Result[2] == Draw) {
+			add_Draw();
+		}
+	}
+};
+/*
+중요!!! 수정해야함
+
+랜덤 모델로 부터 받은 점수이기 때문에 
+
+VISIT 선별 이후, Q 점수로 선별, 
+
+정상 모델이라면 Selectiong Score 로 선별!
+
+
+*/
+char* Node::For_root_choice() {
+	int tmp_max = 0;
+	float tmp_max2 = 0;
 	int index = 0;
-
+	int num = 0;
 	for (int i = 0; i < child_len; i++) {
 		if (children[i]->get_Visit() > tmp_max) {
 			index = i;
 			tmp_max = children[i]->get_Visit();
+			num = 1;
+		}
+		else if (children[i]->get_Visit() == tmp_max) {
+			num++;
 		}
 	}
+	if (num > 1){	
+		index = 0;
+		for (int i = tmp_max; i < child_len; i++) {
+			if (children[i]->get_Visit() == tmp_max) {
+				if (children[i]->get_Qscore() > tmp_max2) {
+					index = i;
+					tmp_max2 = children[i]->get_Qscore();
+					cout << tmp_max2 << children[i]->get_Qscore();
+				}
+			}
 
+		}
+	}
 	return children[index]->get_command();
 };
 bool Node::is_root() {
@@ -172,14 +231,28 @@ bool Node::is_root() {
 	else
 		return false;
 };
+void Node::print_childInfo() {
+	for (int i = 0; i < child_len; i++) {
+		cout << i << " : ";
+		children[i]->print_nodeInfo();
+	}
+		
+};
+
 
 // 출력해보고 싶은 노드정보
-void Node::print_childInfo() {
-	cout << "win : " << win;
-	cout << " lose : " << lose;
-	cout << " Draw : " << draw;
-
+void Node::print_nodeInfo() {
+		cout << command;
+		cout << "	win : " << win;
+		cout << "	lose : " << lose;
+		cout << "	Draw : " << draw; 
+		cout << "	SCORE : " << calc_selectingScore();
+		cout << "	Q : " << get_Qscore();
+		cout << "	u : " << get_Uscore();
+		cout << "	Visit : " << get_Visit() << endl;
 };
+
+
 
 
 int Node::sum_childrenVisit() {

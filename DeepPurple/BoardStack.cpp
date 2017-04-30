@@ -1,7 +1,7 @@
 #include "BoardStack.h"
 
 BoardStack::BoardStack() {};
-BoardStack::BoardStack(char* BoardString) {};
+BoardStack::BoardStack(char* Boardstring) {};
 void BoardStack::push(char* command) {};
 char* BoardStack::pop() {
 	return "";

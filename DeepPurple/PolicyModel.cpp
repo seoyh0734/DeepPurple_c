@@ -9,13 +9,16 @@ PolicyModel::PolicyModel() {
 
 };
 PolicyModel::~PolicyModel() {
+};
+
+void PolicyModel::destroy() {
 	delete scores;
+	moves->destroy();
 };
 
 void  PolicyModel::calc(PyChess Board) {
 	moves = Board.legal_moves();
-	//cout << moves.size() << endl;
-	len = (int)moves.size();
+	len = moves->get_moves_num();
 	scores = new float[len];
 	for (int i = 0; i < len; i++) {
 		float r = (float)rand() / RAND_MAX;
@@ -25,11 +28,13 @@ void  PolicyModel::calc(PyChess Board) {
 float* PolicyModel::ask_Scores() {
 	return scores;
 };
-vector<string> PolicyModel::ask_moves() {
-	return  moves;
+char** PolicyModel::ask_moves() {
+	return  moves->get_movearray();
 };
 
 int  PolicyModel::get_len() {
 	return len;
 };
+
+
 

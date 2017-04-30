@@ -3,7 +3,7 @@
 
 class Monte {
 private:
-	Tree tree;
+	Tree* tree;
 	int expand_visit;
 	int select_depth;
 	int repeat_num;
@@ -12,10 +12,11 @@ private:
 public:
 	Monte::Monte(); // board state 입력, turn 초기화
 	Monte::Monte(PyChess Board);
-	string Monte::predict();
+	void Monte::destroy();
+	char* Monte::predict();
 	bool  Monte::selection(int Depth);
-	string  Monte::expantion();
+	char*  Monte::expantion();
 	char*  Monte::simulation();
-	string  Monte::backpropagation(string Result);
-	string  Monte::choice();
+	char*  Monte::backpropagation(char* Result);
+	char*  Monte::choice();
 };

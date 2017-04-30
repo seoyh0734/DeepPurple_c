@@ -14,18 +14,20 @@ private:
 public :
 	Tree::Tree();
 	Tree::Tree(PyChess Board);
+	void Tree::destroy();
+
 	virtual Tree::~Tree();
 	void Tree::go_root();
 	Node* Tree::get_currentNode();
 	void Tree::make_policyNextChildren();
 	PyChess Tree::make_policyNextRandomChildBoard(PyChess Board);
 	Node* Tree::get_rootNode();
-	string Tree::get_result();
+	char* Tree::get_result();
 	void Tree::go_next();
 	void Tree::go_parrent();
 	PyChess Tree::get_currentBoard();
 	bool Tree::check_board();
 	bool Tree::get_turn();
 	bool Tree::get_is_GameOver();
-	string Tree::best_choice();
+	char* Tree::best_choice();
 };

@@ -36,30 +36,36 @@
     <ClInclude Include="PyChess.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Moveset.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Node.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="test.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BoardStack.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PolicyModel.cpp">
+    <ClCompile Include="PyChess.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Monte.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PyChess.cpp">
+    <ClCompile Include="Node.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PolicyModel.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Moveset.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
